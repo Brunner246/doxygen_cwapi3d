@@ -1,0 +1,25 @@
+name: Doxygen
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4.1.4
+
+    - name: Doxygen Action
+      uses: mattnotmitt/doxygen-action@1.9.8
+      with:
+        doxyfile-path: 'Doxyfile'
+
+    - name: Deploy to GitHub Pages
+      id: deploy
+      uses: actions/deploy-pages@v4 #JamesIves/github-pages-deploy-action@4.1.5
+    #   with:
+    #     branch: gh-pages
+    #     folder: docs
